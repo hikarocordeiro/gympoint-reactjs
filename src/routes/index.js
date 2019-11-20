@@ -2,11 +2,11 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import Route from './Route';
 
-import SignIn from '../pages/SignIn';
+import SignIn from '~/pages/SignIn';
 
-import Enrollment from '../pages/Enrollment';
-import Help from '../pages/Help';
-import Plan from '../pages/Plan';
+import Enrollment from '~/pages/Enrollment';
+import Help from '~/pages/Help';
+import Plan from '~/pages/Plan';
 
 export default function Routes() {
   return (
