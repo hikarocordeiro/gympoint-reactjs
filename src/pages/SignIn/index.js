@@ -11,9 +11,10 @@ export default function SignIn() {
         <img src={logo} alt="GymPoint" />
 
         <form>
-          <label>SEU E-MAIL</label>
+          <span>SEU E-MAIL</span>
           <input type="email" placeholder="exemplo@email.com" />
-          <label>SUA SENHA</label>
+          <br />
+          <span>SUA SENHA</span>
           <input type="password" placeholder="*************" />
 
           <button type="submit">Entrar no sistema</button>

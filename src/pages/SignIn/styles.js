@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  max-width: 315px;
+  max-width: 360px;
   text-align: center;
   background: #fff;
   border-radius: 4px;
@@ -26,16 +26,8 @@ export const Content = styled.div`
     flex-direction: column;
     margin-top: 30px;
 
-    label {
-      font-size: 14px;
-      color: #444444;
-      text-align: left;
-      font-weight: bold;
-      padding-bottom: 5px;
-    }
-
     input {
-      color: #444444;
+      color: #444;
       background: #fff;
       border: 1px solid #eee;
       border-radius: 4px;
@@ -63,6 +55,14 @@ export const Content = styled.div`
       &:hover {
         background: ${darken(0.03, '#ee4d64')};
       }
+    }
+
+    span {
+      font-size: 14px;
+      color: #444;
+      text-align: left;
+      font-weight: bold;
+      padding-bottom: 5px;
     }
   }
 `;
