@@ -57,12 +57,19 @@ export const Content = styled.div`
       }
     }
 
-    span {
+    p {
       font-size: 14px;
       color: #444;
       text-align: left;
       font-weight: bold;
       padding-bottom: 5px;
+    }
+
+    span {
+      color: #ee4d64;
+      align-self: flex-start;
+      margin: 0 0 10px;
+      font-weight: bold;
     }
   }
 `;
