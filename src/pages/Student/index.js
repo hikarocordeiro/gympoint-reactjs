@@ -2,6 +2,6 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-export default function User() {
+export default function Student() {
   return <div />;
 }
