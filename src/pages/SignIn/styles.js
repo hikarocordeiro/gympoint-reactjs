@@ -4,10 +4,12 @@ import { darken } from 'polished';
 export const Container = styled.div`
   width: 100%;
   max-width: 360px;
+  height: 448px;
   text-align: center;
   background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  padding: 45px 30px;
+  padding: 50px 30px;
 
   img {
     width: 153px;
@@ -21,7 +23,7 @@ export const Container = styled.div`
     input {
       color: #444;
       background: #fff;
-      border: 1px solid #eee;
+      border: 1px solid #ddd;
       border-radius: 4px;
       height: 44px;
       padding: 0 15px;

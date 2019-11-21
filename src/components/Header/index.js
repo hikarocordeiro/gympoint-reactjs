@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import logo from '~/assets/logo.png';
+import logo from '~/assets/logo2.svg';
 
 import { Container, Content } from './styles';
 
@@ -11,6 +11,7 @@ export default function Header() {
       <Content>
         <nav>
           <img src={logo} alt="GymPoint" />
+
           <Link to="/student">ALUNOS</Link>
           <Link to="/plan">PLANOS</Link>
           <Link to="/enrollment">MATRÍCULAS</Link>
