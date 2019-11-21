@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import logo from '~/assets/logo2.svg';
 
@@ -12,10 +12,18 @@ export default function Header() {
         <nav>
           <img src={logo} alt="GymPoint" />
 
-          <Link to="/student">ALUNOS</Link>
-          <Link to="/plan">PLANOS</Link>
-          <Link to="/enrollment">MATRÍCULAS</Link>
-          <Link to="/help">PEDIDOS DE AUXÍLIO</Link>
+          <NavLink to="/student" activeStyle={{ color: '#444444' }}>
+            ALUNOS
+          </NavLink>
+          <NavLink to="/plan" activeStyle={{ color: '#444444' }}>
+            PLANOS
+          </NavLink>
+          <NavLink to="/enrollment" activeStyle={{ color: '#444444' }}>
+            MATRÍCULAS
+          </NavLink>
+          <NavLink to="/help" activeStyle={{ color: '#444444' }}>
+            PEDIDOS DE AUXÍLIO
+          </NavLink>
         </nav>
 
         <aside>

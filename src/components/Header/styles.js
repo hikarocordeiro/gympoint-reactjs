@@ -22,6 +22,7 @@ export const Content = styled.div`
       padding: 5px 30px;
       border-right: 1px solid #dddddd;
     }
+
     a {
       margin-right: 20px;
       font-weight: bold;
@@ -29,16 +30,19 @@ export const Content = styled.div`
       color: #999999;
     }
   }
+
   aside {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+
     strong {
       color: #666666;
       font-size: 14px;
       font-weight: bold;
       margin-bottom: 4px;
     }
+
     button {
       background: inherit;
       color: #de3b3b;
