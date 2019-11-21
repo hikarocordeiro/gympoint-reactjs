@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
-import { Container, Content } from './styles';
+import { Container } from './styles';
 
 import { signInRequest } from '~/store/modules/auth/actions';
 
@@ -26,21 +26,19 @@ export default function SignIn() {
 
   return (
     <Container>
-      <Content>
-        <img src={logo} alt="GymPoint" />
+      <img src={logo} alt="GymPoint" />
 
-        <Form schema={schema} onSubmit={handleSubmit}>
-          <p>SEU E-MAIL</p>
-          <Input name="email" type="email" placeholder="exemplo@email.com" />
-          <br />
-          <p>SUA SENHA</p>
-          <Input name="password" type="password" placeholder="*************" />
+      <Form schema={schema} onSubmit={handleSubmit}>
+        <p>SEU E-MAIL</p>
+        <Input name="email" type="email" placeholder="exemplo@email.com" />
+        <br />
+        <p>SUA SENHA</p>
+        <Input name="password" type="password" placeholder="*************" />
 
-          <button type="submit">
-            {loading ? 'Carregando...' : 'Entrar no sistema'}
-          </button>
-        </Form>
-      </Content>
+        <button type="submit">
+          {loading ? 'Carregando...' : 'Entrar no sistema'}
+        </button>
+      </Form>
     </Container>
   );
 }
