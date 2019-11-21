@@ -3,7 +3,7 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import api from '~/services/api';
 import history from '~/services/history';
 
-import { signInSuccess } from './actions';
+import { signInSuccess, signFailure } from './actions';
 
 export function* signIn({ payload }) {
   try {
@@ -14,14 +14,13 @@ export function* signIn({ payload }) {
       password,
     });
 
-    console.tron.log(response.data);
-
     const { token, user } = response.data;
 
     yield put(signInSuccess(token, user));
 
     history.push('/student');
   } catch (err) {
+    yield put(signFailure());
     console.tron.log(err);
   }
 }
