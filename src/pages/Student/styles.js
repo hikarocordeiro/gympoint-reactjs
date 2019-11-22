@@ -78,7 +78,7 @@ export const StudentTable = styled.table`
     tr {
       td {
         font-size: 16px;
-        padding: 20px 0;
+        padding: 15px 0;
         color: #666666;
         border-bottom: 1px solid #eee;
       }
