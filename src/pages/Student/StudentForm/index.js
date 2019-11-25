@@ -31,7 +31,7 @@ export default function StudentForm() {
   const [student, setStudent] = useState({});
 
   async function loadStudent(studentId) {
-    const response = await api.get('/students', {
+    const response = await api.get(`/students/${studentId}`, {
       params: {
         id: studentId,
       },
@@ -55,13 +55,24 @@ export default function StudentForm() {
     try {
       if (!id) {
         await api.post('/students', { name, email, age, weight, height });
+
+        toast.success('Cadastro realizado com sucesso');
       } else {
-        await api.put('/students', { id, name, email, age, weight, height });
+        await api.put(`/students/${id}`, {
+          id,
+          name,
+          email,
+          age,
+          weight,
+          height,
+        });
+
+        toast.success('Cadastro alterado com sucesso');
       }
 
-      toast.success('Cadastro realizado com sucesso');
       history.push('/student');
     } catch (err) {
+      console.tron.log(err);
       toast.error('Erro no cadastro');
     }
   }
@@ -72,6 +83,7 @@ export default function StudentForm() {
         <ContentHeader title="Cadastro de aluno" onClickBack={handleBackPage} />
 
         <Content>
+          <Input type="hidden" name="id" />
           <strong>NOME COMPLETO</strong>
           <Input name="name" placeholder="Jhon Doe" />
           <br />
@@ -81,17 +93,17 @@ export default function StudentForm() {
           <InLine>
             <div>
               <strong>IDADE</strong>
-              <Input name="age" type="number" />
+              <Input name="age" type="text" />
             </div>
 
             <div>
               <strong>PESO (Em Kg)</strong>
-              <Input name="weight" type="number" />
+              <Input name="weight" type="text" />
             </div>
 
             <div>
               <strong>ALTURA</strong>
-              <Input name="height" type="number" />
+              <Input name="height" type="text" />
             </div>
           </InLine>
         </Content>
