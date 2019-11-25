@@ -46,7 +46,7 @@ export default function PlanList() {
   return (
     <Container>
       <Header>
-        <strong>Gerenciando alunos</strong>
+        <strong>Gerenciando planos</strong>
         <aside>
           <RegisterButton
             onClick={() => {
