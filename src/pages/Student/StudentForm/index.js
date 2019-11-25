@@ -37,7 +37,6 @@ export default function StudentForm() {
       },
     });
 
-    console.tron.log(response);
     setStudent(response.data);
   }
 
