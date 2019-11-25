@@ -13,7 +13,7 @@ export default function Header() {
   const dispatch = useDispatch();
 
   function handleSignOut() {
-    dispatch(signOut);
+    dispatch(signOut());
   }
 
   return (

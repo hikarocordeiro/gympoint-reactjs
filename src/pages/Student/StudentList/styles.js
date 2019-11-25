@@ -11,6 +11,7 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: #444444;
 
   strong {
     font-weight: bold;
@@ -98,17 +99,18 @@ export const StudentTable = styled.table`
       display: flex;
       justify-content: flex-end;
 
+      a {
+        font-size: 14px;
+        color: #4d85ee;
+        margin-right: 23px;
+      }
+
       button {
         border: 0;
         background: inherit;
       }
     }
   }
-`;
-
-export const EditButton = styled.button`
-  color: #4d85ee;
-  margin-right: 23px;
 `;
 
 export const DeleteButton = styled.button`
