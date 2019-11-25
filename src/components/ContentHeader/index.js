@@ -4,7 +4,7 @@ import { MdKeyboardArrowLeft, MdCheck } from 'react-icons/md';
 
 import { Container, BackButton, SaveButton } from './styles';
 
-export default function ContentHeader({ title, onClickBack, onClickSave }) {
+export default function ContentHeader({ title, onClickBack }) {
   return (
     <Container>
       <strong>{title}</strong>
@@ -13,7 +13,7 @@ export default function ContentHeader({ title, onClickBack, onClickSave }) {
           <MdKeyboardArrowLeft size={23} color="#FFF" />
           <strong>VOLTAR</strong>
         </BackButton>
-        <SaveButton type="submit" onClick={onClickSave}>
+        <SaveButton type="submit">
           <MdCheck size={23} color="#FFF" />
           <strong>SALVAR</strong>
         </SaveButton>
@@ -25,5 +25,4 @@ export default function ContentHeader({ title, onClickBack, onClickSave }) {
 ContentHeader.propTypes = {
   title: PropTypes.string.isRequired,
   onClickBack: PropTypes.func.isRequired,
-  onClickSave: PropTypes.func.isRequired,
 };

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 import history from '~/services/history';
+import api from '~/services/api';
 
 import { Container, Content, InLine } from './styles';
 import ContentHeader from '~/components/ContentHeader';
@@ -24,22 +27,49 @@ const schema = Yup.object().shape({
 });
 
 export default function StudentForm() {
+  const { id } = useParams();
+  const [student, setStudent] = useState({});
+
+  async function loadStudent(studentId) {
+    const response = await api.get('/students', {
+      params: {
+        id: studentId,
+      },
+    });
+
+    console.tron.log(response);
+    setStudent(response.data);
+  }
+
+  useEffect(() => {
+    if (id) {
+      loadStudent(id);
+    }
+  }, [id]);
+
   function handleBackPage() {
     history.push('/student');
   }
 
-  function handleSubmit({ name, email, age, weight, height }) {
-    console.tron.log({ name, email, age, weight, height });
+  async function handleSubmit({ name, email, age, weight, height }) {
+    try {
+      if (!id) {
+        await api.post('/students', { name, email, age, weight, height });
+      } else {
+        await api.put('/students', { id, name, email, age, weight, height });
+      }
+
+      toast.success('Cadastro realizado com sucesso');
+      history.push('/student');
+    } catch (err) {
+      toast.error('Erro no cadastro');
+    }
   }
 
   return (
     <Container>
-      <Form schema={schema} onSubmit={handleSubmit}>
-        <ContentHeader
-          title="Cadastro de aluno"
-          onClickBack={handleBackPage}
-          onClickSave={handleSubmit}
-        />
+      <Form schema={schema} onSubmit={handleSubmit} initialData={student}>
+        <ContentHeader title="Cadastro de aluno" onClickBack={handleBackPage} />
 
         <Content>
           <strong>NOME COMPLETO</strong>
