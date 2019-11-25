@@ -7,10 +7,12 @@ import { Button } from './styles';
 
 export default function RegisterButton({ onClick }) {
   return (
-    <Button type="button" onClick={() => onClick()}>
-      <MdAdd size={23} color="#FFF" />
-      <strong>CADASTRAR</strong>
-    </Button>
+    <>
+      <Button type="button" onClick={() => onClick()}>
+        <MdAdd size={23} color="#FFF" />
+        <strong>CADASTRAR</strong>
+      </Button>
+    </>
   );
 }
 

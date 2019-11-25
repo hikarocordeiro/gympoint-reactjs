@@ -6,7 +6,7 @@ import SignIn from '~/pages/SignIn';
 
 import Enrollment from '~/pages/Enrollment';
 import Help from '~/pages/Help';
-import Plan from '~/pages/Plan';
+import Plan from '~/pages/Plan/PlanList';
 import StudentList from '~/pages/Student/StudentList';
 import StudentForm from '~/pages/Student/StudentForm';
 

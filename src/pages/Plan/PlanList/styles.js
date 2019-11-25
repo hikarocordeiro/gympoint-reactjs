@@ -19,36 +19,14 @@ export const Header = styled.div`
   }
 
   aside {
+    font-size: 14px;
     display: flex;
     align-self: center;
     align-items: center;
   }
 `;
 
-export const Search = styled.div`
-  display: block;
-  max-width: 237px;
-  height: 36px;
-  margin-left: 16px;
-
-  input {
-    width: 237px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    line-height: 16px;
-    color: #999;
-    padding: 10px 40px;
-  }
-
-  svg {
-    position: absolute;
-    margin: 12px 15px;
-    line-height: 23px;
-  }
-`;
-
-export const StudentTable = styled.table`
+export const Table = styled.table`
   width: 100%;
   background: #fff;
   border-radius: 4px;
@@ -65,6 +43,7 @@ export const StudentTable = styled.table`
       padding-bottom: 10px;
     }
 
+    th:nth-of-type(2),
     th:nth-of-type(3) {
       text-align: center;
     }
@@ -84,6 +63,7 @@ export const StudentTable = styled.table`
         border-bottom: 1px solid #eee;
       }
 
+      td:nth-of-type(2),
       td:nth-of-type(3) {
         text-align: center;
       }
