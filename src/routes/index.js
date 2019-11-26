@@ -4,7 +4,7 @@ import Route from './Route';
 
 import SignIn from '~/pages/SignIn';
 
-import Enrollment from '~/pages/Enrollment';
+import EnrollmentList from '~/pages/Enrollment/EnrollmentList';
 import Help from '~/pages/Help';
 
 import PlanList from '~/pages/Plan/PlanList';
@@ -22,7 +22,8 @@ export default function Routes() {
       <Route path="/student/register" component={StudentForm} isPrivate />
       <Route path="/student/:id/edit" component={StudentForm} isPrivate />
 
-      <Route path="/enrollment" component={Enrollment} isPrivate />
+      <Route path="/enrollment" exact component={EnrollmentList} isPrivate />
+
       <Route path="/help" component={Help} isPrivate />
 
       <Route path="/plan" exact component={PlanList} isPrivate />
