@@ -4,7 +4,6 @@ import Route from './Route';
 
 import SignIn from '~/pages/SignIn';
 
-import EnrollmentList from '~/pages/Enrollment/EnrollmentList';
 import Help from '~/pages/Help';
 
 import PlanList from '~/pages/Plan/PlanList';
@@ -12,6 +11,9 @@ import PlanForm from '~/pages/Plan/PlanForm';
 
 import StudentList from '~/pages/Student/StudentList';
 import StudentForm from '~/pages/Student/StudentForm';
+
+import EnrollmentList from '~/pages/Enrollment/EnrollmentList';
+import EnrollmentForm from '~/pages/Enrollment/EnrollmentForm';
 
 export default function Routes() {
   return (
@@ -23,6 +25,8 @@ export default function Routes() {
       <Route path="/student/:id/edit" component={StudentForm} isPrivate />
 
       <Route path="/enrollment" exact component={EnrollmentList} isPrivate />
+      <Route path="/enrollment/register" component={EnrollmentForm} isPrivate />
+      <Route path="/enrollment/:id/edit" component={EnrollmentForm} isPrivate />
 
       <Route path="/help" component={Help} isPrivate />
 
