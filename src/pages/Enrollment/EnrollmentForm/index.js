@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import { toast } from 'react-toastify';
-import Select from 'react-select';
+import AsyncSelect from 'react-select/async';
 import * as Yup from 'yup';
 
 import history from '~/services/history';
@@ -21,12 +21,7 @@ const schema = Yup.object().shape({
 export default function EnrollmentForm() {
   const { id } = useParams();
   const [enrollment, setEnrollments] = useState({});
-
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ];
+  const [studentList, setStudentList] = useState({});
 
   async function loadEnrollment(enrollmentId) {
     const response = await api.get(`/enrollments/${enrollmentId}`, {
@@ -78,6 +73,20 @@ export default function EnrollmentForm() {
     }
   }
 
+  async function handleStudentSelect(newValue) {
+    const { value } = newValue.replace(/\W/g, '');
+
+    // if (value) {
+    const response = await api.get('/students', {
+      params: {
+        name: value,
+      },
+    });
+    // callback(response);
+    setStudentList(response.data);
+    // }
+  }
+
   return (
     <Container>
       <Form schema={schema} onSubmit={handleSubmit} initialData={enrollment}>
@@ -89,7 +98,12 @@ export default function EnrollmentForm() {
         <Content>
           <Input type="hidden" name="id" />
           <strong>ALUNO</strong>
-          <Select name="student" options={options} />
+          <AsyncSelect
+            cacheOptions
+            // loadOptions={studentList}
+            defaultOptions
+            // onInputChange={handleStudentSelect}
+          />
           <br />
           <InLine>
             <div>
