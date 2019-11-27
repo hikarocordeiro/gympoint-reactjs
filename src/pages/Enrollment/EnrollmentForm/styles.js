@@ -48,16 +48,12 @@ export const InLine = styled.div`
   justify-content: space-between;
   margin-top: 20px;
 
-  div {
+  > div {
     display: flex;
     flex-direction: column;
     width: 198px;
 
     input {
-      width: 100%;
-    }
-
-    select {
       width: 100%;
     }
   }
