@@ -51,9 +51,14 @@ export const InLine = styled.div`
   div {
     display: flex;
     flex-direction: column;
+    width: 198px;
 
     input {
-      width: 270px;
+      width: 100%;
+    }
+
+    select {
+      width: 100%;
     }
   }
 `;

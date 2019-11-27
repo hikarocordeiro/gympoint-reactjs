@@ -2,7 +2,8 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import { toast } from 'react-toastify';
-import AsyncSelect from 'react-select/async';
+import AsyncSelect from 'react-select/lib/Async';
+import Select from 'react-select';
 import * as Yup from 'yup';
 
 import history from '~/services/history';
@@ -21,7 +22,7 @@ const schema = Yup.object().shape({
 export default function EnrollmentForm() {
   const { id } = useParams();
   const [enrollment, setEnrollments] = useState({});
-  const [studentList, setStudentList] = useState({});
+  // const [studentList, setStudentList] = useState({});
 
   async function loadEnrollment(enrollmentId) {
     const response = await api.get(`/enrollments/${enrollmentId}`, {
@@ -73,19 +74,51 @@ export default function EnrollmentForm() {
     }
   }
 
-  async function handleStudentSelect(newValue) {
-    const { value } = newValue.replace(/\W/g, '');
+  async function filterStudents(inputValue) {
+    const value = inputValue.replace(/\W/g, '');
 
-    // if (value) {
     const response = await api.get('/students', {
       params: {
         name: value,
       },
     });
-    // callback(response);
-    setStudentList(response.data);
-    // }
+
+    const options = response.data.map(student => {
+      const option = {};
+
+      option.value = student.id;
+      option.label = student.name;
+
+      return option;
+    });
+
+    return options;
   }
+
+  const promiseOptions = inputValue =>
+    new Promise(resolve => {
+      setTimeout(() => {
+        resolve(filterStudents(inputValue));
+      }, 1000);
+    });
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      color: state.isSelected ? '#999999' : '#999999',
+    }),
+    control: () => ({
+      border: '1px solid #dddddd',
+      borderRadius: '4px',
+      display: 'flex',
+      width: '100%',
+      height: '45px',
+    }),
+    singleValue: provided => ({
+      ...provided,
+      color: '#999999',
+    }),
+  };
 
   return (
     <Container>
@@ -100,30 +133,31 @@ export default function EnrollmentForm() {
           <strong>ALUNO</strong>
           <AsyncSelect
             cacheOptions
-            // loadOptions={studentList}
             defaultOptions
-            // onInputChange={handleStudentSelect}
+            loadOptions={promiseOptions}
+            placeholder="Selecione o aluno..."
+            styles={customStyles}
           />
           <br />
           <InLine>
             <div>
               <strong>PLANO</strong>
-              <Input name="duration" type="number" />
+              <Select name="plan" type="number" styles={customStyles} />
             </div>
 
             <div>
               <strong>DATA DE INÍCIO</strong>
-              <Input name="price" type="number" step=".01" />
+              <Input name="start_date" />
+            </div>
+
+            <div>
+              <strong>DATA DE TÉRMINO</strong>
+              <Input name="end_date" readOnly />
             </div>
 
             <div>
               <strong>PREÇO TOTAL</strong>
-              <Input
-                name="totalPrice"
-                type="text"
-                readOnly
-                value={totalPrice}
-              />
+              <Input name="totalPrice" readOnly value={totalPrice} />
             </div>
           </InLine>
         </Content>
