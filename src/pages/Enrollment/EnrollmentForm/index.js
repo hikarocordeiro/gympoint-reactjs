@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
   format,
@@ -7,6 +8,7 @@ import {
   setMinutes,
   setSeconds,
   endOfSecond,
+  parseISO,
 } from 'date-fns';
 
 import pt from 'date-fns/locale/pt-BR';
@@ -44,26 +46,13 @@ const schema = Yup.object().shape({
 });
 
 export default function RegisterEnrollment() {
+  const { id } = useParams();
+
   const [startDate, setStartDate] = useState(new Date());
   const [plans, setPlans] = useState({});
   const [plan, setPlan] = useState({});
-  const [initialData, setInitialData] = useState({});
 
-  async function loadPlans() {
-    const response = await api
-      .get('plans')
-      .then(r => r.data)
-      .then(d =>
-        d.map(p => ({
-          label: p.title,
-          value: p.id,
-          duration: p.duration,
-          price: p.price,
-        }))
-      );
-
-    setPlans(response);
-  }
+  const [newStudent, setNewStudent] = useState({});
 
   const end_date = useMemo(() => {
     if (!plan.duration) {
@@ -87,13 +76,56 @@ export default function RegisterEnrollment() {
   }, [plan.duration, plan.price]);
 
   useEffect(() => {
-    loadPlans();
+    async function loadManageEnrollment() {
+      const loadPlans = await api
+        .get('plans')
+        .then(r => r.data)
+        .then(d =>
+          d.map(p => ({
+            label: p.title,
+            value: p.id,
+            duration: p.duration,
+            price: p.price,
+          }))
+        );
 
-    setInitialData({
-      end_date,
-      totalPrice,
-    });
-  }, [end_date, startDate, totalPrice]);
+      if (id) {
+        const enrollment = await api
+          .get('enrollments')
+          .then(r => r.data)
+          .then(d => d.filter(e => e.id === Number(id)));
+
+        setStartDate(parseISO(enrollment[0].start_date));
+        setNewStudent({
+          label: enrollment[0].student.name,
+          value: enrollment[0].student.id,
+        });
+
+        if (enrollment[0].plan) {
+          const defaultPlan = loadPlans.filter(
+            p => p.value === enrollment[0].plan.id
+          );
+          setPlan(defaultPlan[0]);
+        }
+      }
+      setPlans(loadPlans);
+    }
+
+    loadManageEnrollment();
+  }, [id]);
+
+  const initialData = useMemo(() => {
+    if (!!end_date && !!newStudent && !!plan && !!startDate && !!totalPrice) {
+      return {
+        end_date,
+        totalPrice,
+        plan,
+        start_date: startDate,
+        student: newStudent,
+      };
+    }
+    return {};
+  }, [end_date, newStudent, plan, startDate, totalPrice]);
 
   async function handleSubmit(data) {
     try {
