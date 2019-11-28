@@ -179,7 +179,11 @@ export default function RegisterEnrollment() {
         <Content>
           <Input type="hidden" name="id" />
           <strong>ALUNO</strong>
-          <InputAsyncSelect name="student" loadOptions={loadOptions} />
+          <InputAsyncSelect
+            name="student"
+            loadOptions={loadOptions}
+            defaultValue={newStudent}
+          />
           <br />
           <InLine>
             <div>
