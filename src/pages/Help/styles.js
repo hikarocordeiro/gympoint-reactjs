@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   max-width: 700px;
@@ -20,32 +21,53 @@ export const Top = styled.div`
 `;
 
 export const List = styled.table`
-  background: #fff;
-  /* margin-top: 20px; */
   width: 100%;
+  background: #fff;
   border-radius: 4px;
   padding: 30px 30px;
+  border-spacing: 0px;
+
   thead {
     color: #444444;
     font-size: 16px;
     font-weight: bold;
-    line-height: 19px;
+
     th {
       text-align: left;
+      padding-bottom: 10px;
     }
   }
-  tbody tr td {
-    border-bottom: 1px solid #eeeeee;
+
+  tbody {
     color: #666666;
-    text-align: left;
-    &:nth-child(2) {
-      text-align: right;
+    & + tr {
+      border-top: 1px solid #eee;
     }
-    button {
-      background: inherit;
-      color: #4d85ee;
-      font-size: 14px;
-      font-weight: normal;
+
+    tr {
+      td {
+        font-size: 16px;
+        padding: 15px 0;
+        color: #666666;
+        border-bottom: 1px solid #eee;
+      }
+
+      & + tr:last-child {
+        td {
+          border: none;
+        }
+      }
+    }
+
+    div {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        border: 0;
+        background: inherit;
+        color: #4d85ee;
+      }
     }
   }
 `;
@@ -59,7 +81,7 @@ export const AnswerScreen = styled.div`
   right: 0;
   bottom: 0;
   margin: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
   div {
@@ -78,7 +100,7 @@ export const AnswerScreen = styled.div`
       line-height: 16px;
       color: #444444;
     }
-    p {
+    span {
       margin-top: 8px;
       margin-bottom: 20px;
       height: 104px;
@@ -94,15 +116,31 @@ export const AnswerScreen = styled.div`
       padding: 0px;
     }
     textarea {
-      margin-top: 8px;
-      resize: none;
-      width: 390px;
-      height: 127px;
-      padding: 13px 15px;
-      color: #999999;
+      border: 1px solid #ddd;
+      background: #fff;
       font-size: 16px;
-      line-height: 19px;
-      margin-bottom: 21px;
+      height: 127px;
+      border-radius: 4px;
+      width: 100%;
+      padding: 10px;
+      color: #666;
+      margin-top: 8px;
+      font-weight: normal;
+    }
+
+    button {
+      margin: 15px 0 0;
+      height: 45px;
+      background: #ee4d64;
+      font-weight: bold;
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background 0.2s;
+      &:hover {
+        background: ${darken(0.05, '#ee4d64')};
+      }
     }
   }
 `;

@@ -65,12 +65,14 @@ export default function HelpOrders() {
               <tr key={helpOrder.id}>
                 <td>{helpOrder.student.name}</td>
                 <td>
-                  <button
-                    type="button"
-                    onClick={() => handleAnswerClick(helpOrder.id)}
-                  >
-                    Responder
-                  </button>
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => handleAnswerClick(helpOrder.id)}
+                    >
+                      responder
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -82,7 +84,6 @@ export default function HelpOrders() {
           className="Fechar"
           clickable
           onClick={e => {
-            // Verifica se clicou somente no div externo
             if (e.target === e.currentTarget) {
               setShowAnswerScreen(false);
             }
@@ -90,11 +91,8 @@ export default function HelpOrders() {
         >
           <div>
             <strong>PERGUNTA DO ALUNO</strong>
-            <textarea
-              readOnly
-              className="Answer"
-              value={helpOrderAnswering.question}
-            />
+
+            <span>{helpOrderAnswering.question}</span>
 
             <strong>SUA RESPOSTA</strong>
             <textarea onChange={e => handleTextChange(e.target.value)} />

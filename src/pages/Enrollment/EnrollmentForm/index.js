@@ -28,18 +28,6 @@ import ReactSelect from '~/components/InputSelect';
 import { Container, Content, InLine } from './styles';
 
 const schema = Yup.object().shape({
-  student: Yup.object()
-    .shape({
-      value: Yup.number().integer(),
-    })
-    .typeError('Valor inválido')
-    .required('Aluno obrigatório'),
-  plan: Yup.object()
-    .shape({
-      value: Yup.number().integer(),
-    })
-    .typeError('Valor inválido')
-    .required('Aluno obrigatório'),
   start_date: Yup.date()
     .typeError('Valor inválido')
     .required('Data obrigatória'),
