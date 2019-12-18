@@ -3,7 +3,7 @@ import { reactotronRedux } from 'reactotron-redux';
 import reactotronSaga from 'reactotron-redux-saga';
 
 if (process.env.NODE_ENV === 'development') {
-  const tron = Reactotron.configure({ port: 9090 })
+  const tron = Reactotron.configure()
     .use(reactotronRedux())
     .use(reactotronSaga())
     .connect();
@@ -11,4 +11,6 @@ if (process.env.NODE_ENV === 'development') {
   tron.clear();
 
   console.tron = tron;
+
+  console.tron.log(process.env.REACTOTRON_PORT);
 }
