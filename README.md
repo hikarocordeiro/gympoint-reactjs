@@ -53,7 +53,6 @@ This project was developed at the [RocketSeat GoStack Bootcamp](https://rocketse
 -  [React-Icons](https://react-icons.netlify.com/)
 -  [Yup](https://github.com/jquense/yup)
 -  [Reactotron](https://infinite.red/reactotron)
--  [VS Code][vc] with [EditorConfig][vceditconfig] and [ESLint]
 -  [VS Code][vc] with [EditorConfig][vceditconfig] and [ESLint][vceslint]
 
 ## :information_source: How To Use
